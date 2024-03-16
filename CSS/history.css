@@ -1,0 +1,175 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  height: 100vh;
+  background-color:#cbc1f5;
+}
+
+h1 {
+  margin-top: 50px;
+  text-align: center;
+  font-size: 40px;
+  text-decoration: underline;
+  margin-bottom: 100px;
+}
+
+/* Stilizare pentru container-ul arborelui */ 
+.tree {
+  --col-gap: 2rem;
+  --row-gap: 2rem;
+  --line-w: 0.25rem;
+  display: grid;
+  grid-template-columns: var(--line-w) 1fr; /* Definirea a 2 coloane. una pt linie si alta pt continut */
+  grid-auto-columns: max-content; /* Se seteaza latimea coloanei in functie de continut */
+  column-gap: var(--col-gap);
+  list-style: none;
+  width: min(60rem, 90%);
+  margin-inline: auto; /* Aseaza in centru */
+}
+
+/* Linia pentru arbore */
+.tree::before {
+  content:"";
+  grid-column: 1; /* linia este plasata pe prima coloana*/
+  grid-row: 1 / span 20; /* se intinde pe primul rand pana la a 20 a linie */
+  background: rgb(225, 225, 225);
+  border-radius: calc(var(--line-w) / 2); /* rotunjeste marginile */
+}
+
+
+.tree li:not(:last-child) {
+  margin-bottom: var(--row-gap);
+}
+
+/* fiecare element din arbore */
+.tree li {
+  grid-column: 2; /* continutul este plasat in a 2 a coloana a gridului */
+  --inlineP: 1.5rem;
+  margin-inline: var(--inlineP);
+  grid-row: span 2; /* inaltimea elementului este de 2 randuri */
+  display: grid;
+  grid-template-rows: min-content min-content min-content;
+}
+
+/* stil pt data */
+.tree li .date {
+  --dateH: 3rem; /* inaltimea elementului */
+  height: var(--dateH);
+  margin-inline: calc(var(--inlineP) * -1); /* spatiul intre data si elementul parinte*/
+  text-align: center;
+  background-color: var(--accent-color);
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+  display: grid;
+  place-content: center; /* alinieaza in centru */
+  position: relative;
+  border-radius: calc(var(--dateH) / 2) 0 0 calc(var(--dateH) / 2); /* rotunjirea colturilor */
+}
+
+/* pliul de la data */
+.tree li .date::before {
+  content: "";
+  width: var(--inlineP); 
+  aspect-ratio: 1; /* isi mentine proprotiile in orice rezolutie */
+  background: var(--accent-color);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2) 100%, transparent); /* efectul de transparenta */
+  position: absolute;
+  top: 100%; /* pozitionat la baza elementului de data */
+  clip-path: polygon(0 0, 100% 0, 0 100%); /* se defineste forma */
+  right: 0; /* poz la dreapta */
+}
+
+/* cercul pt data */
+.tree li .date::after {
+  content: "";
+  position: absolute; 
+  width: 2rem; /* diametru */
+  aspect-ratio: 1;
+  background: var(--bgColor);
+  border: 0.3rem solid var(--accent-color);
+  border-radius: 50%;
+  top: 50%; /* pozitionarea la mijloc pe verticala */
+  transform: translate(50%, -50%);
+  right: calc(100% + var(--col-gap) + var(--line-w) / 2); /* poz la dreapta elem de data */
+}
+
+.tree li .title,
+.tree li .descr {
+  background: var(--bgColor);
+  position: relative;
+  padding-inline: 1.5rem;
+}
+
+.tree li .title {
+  overflow: hidden;
+  padding-block-start: 1.5rem;
+  padding-block-end: 1rem;
+  font-weight: 500;
+}
+.tree li .descr {
+  padding-block-end: 1.5rem;
+  font-weight: 300;
+}
+
+/* umbre */
+.tree li .title::before,
+.tree li .descr::before {
+  content: "";
+  position: absolute;
+  width: 90%;
+  height: 0.5rem;
+  background: rgba(0, 0, 0, 0.5);
+  left: 50%; /* poz la mijloc */
+  border-radius: 50%;
+  filter: blur(4px);
+  transform: translate(-50%, 50%);
+}
+
+/* adauga umbra jos */
+.tree li .title::before {
+  bottom: calc(100% + 0.125rem);
+}
+
+.tree li .descr::before {
+  z-index: -1;
+  bottom: 0.25rem;
+}
+
+@media (min-width: 40rem) {
+  .tree {
+    grid-template-columns: 1fr var(--line-w) 1fr;
+  }
+  .tree::before {
+    grid-column: 2;
+  }
+  .tree li:nth-child(odd) {
+    grid-column: 1;
+  }
+  .tree li:nth-child(even) {
+    grid-column: 3;
+  }
+
+  .tree li:nth-child(2) {
+    grid-row: 2/4;
+  }
+
+  .tree li:nth-child(odd) .date::before {
+    clip-path: polygon(0 0, 100% 0, 100% 100%); /* forma triunghiulara pt pliu */
+    left: 0;
+  }
+
+  .tree li:nth-child(odd) .date::after {
+    transform: translate(-50%, -50%); /* ajusteaza poz cercului */
+    left: calc(100% + var(--col-gap) + var(--line-w) / 2);
+  }
+  .tree li:nth-child(odd) .date {
+    border-radius: 0 calc(var(--dateH) / 2) calc(var(--dateH) / 2) 0;
+  }
+}

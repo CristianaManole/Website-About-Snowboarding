@@ -1,0 +1,146 @@
+body{
+    height: 100vh;
+    background-color: black;
+    background-image:url(../Assets/Images/back.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+h1{
+    text-align: center;
+    font-size: 4;
+    text-decoration: underline;
+    margin-bottom: 50px;
+    margin-top: 50px;
+  }
+
+  h2{
+    text-align: center;
+    font-size: 30px;
+    text-decoration: underline;
+    margin-top: 60px;
+    margin-bottom: 50px;
+    color: rgb(0, 0, 0);
+  }
+
+.container{
+    font-size: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.item p{
+    text-indent: 40px;
+    margin-bottom: 50px;
+    background-color: rgba(255, 255, 255, 0.6);
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: justify;
+}
+
+.results {
+    width: 80%; /* Ajustează lățimea containerului */
+    margin: 0 auto; /* pune container-ul pt rezultate pe centru */
+}
+  
+.results ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+  
+.result li {
+     padding: 0; 
+  }
+  
+.results img {
+    max-width: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: all 0.2s ease;
+}
+  
+/* stilizeaza imaginea la hover si focus */
+.results ul:is(:hover, :focus-within) img {
+    opacity: calc(0.1 + (var(--active-lerp, 0) * 0.9));
+    filter: grayscale(calc(1 - var(--active-lerp, 0)));
+}
+  
+/* defineste variabile de tranzitie pt acele efecte */
+:root {
+    --lerp-0: 1;
+    --lerp-1: 0.5787037;
+    --lerp-2: 0.2962963;
+    --lerp-3: 0.125;
+    --lerp-4: 0.037037;
+    --lerp-5: 0.0046296;
+    --lerp-6: 0;
+}
+
+.result li a {
+    outline-offset: 4px;
+} 
+
+.results li {
+    flex: calc(0.1 + (var(--active-lerp, 0) * 1)); /* ajusteaza flexibilitatea */
+    transition: flex 0.2s ease; /* efectul de tranzitie */
+}
+  
+.results li:is(:hover, :focus-within) {
+    --active-lerp: var(--lerp-0);
+    z-index: 7;
+}
+.results li:has( + li:is(:hover, :focus-within)), /* utilizez has pt a selecta un elemnt din li care contine un alt element li */
+  li:is(:hover, :focus-within) + li { /* pun "is" si "plus" pt a selecta elem precedate sau urmate */
+    --active-lerp: var(--lerp-1);
+    z-index: 6;
+  }
+.results li:has( + li + li:is(:hover, :focus-within)),
+.results li:is(:hover, :focus-within) + li + li {
+    --active-lerp: var(--lerp-2);
+    z-index: 5;
+  }
+.results li:has( + li + li + li:is(:hover, :focus-within)),
+.results li:is(:hover, :focus-within) + li + li + li {
+    --active-lerp: var(--lerp-3);
+    z-index: 4;
+  }
+.result li:has( + li + li + li + li:is(:hover, :focus-within)),
+.result li:is(:hover, :focus-within) + li + li + li + li {
+    --active-lerp: var(--lerp-4);
+    z-index: 3;
+  }
+.result li:has( + li + li + li + li + li:is(:hover, :focus-within)),
+.result li:is(:hover, :focus-within) + li + li + li + li + li {
+    --active-lerp: var(--lerp-5);
+    z-index: 2;
+  }
+.result li:has( + li + li + li + li + li + li:is(:hover, :focus-within)),
+.result li:is(:hover, :focus-within) + li + li + li + li + li + li {
+    --active-lerp: var(--lerp-6);
+    z-index: 1;
+  }
+  
+  @media (max-width: 700px) {
+
+    h1, h2 {
+        font-size: 5vw; 
+        margin-bottom: 4vw;
+        margin-top: 4vw;
+    }
+
+    .container {
+        font-size: 4vw;
+        gap: 2vw;
+    }
+
+    .item p {
+        text-indent: 7vw; 
+        margin-bottom: 4vw;
+        margin-left: 1vw;
+        margin-right: 1vw;
+    }
+
+}

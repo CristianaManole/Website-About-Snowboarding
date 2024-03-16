@@ -1,0 +1,124 @@
+body{
+    height: 100vh;
+    background-color: black;
+    background-image: url(https://wallpapers.com/images/hd/snow-aesthetic-volcano-ylv3i316us12a49w.jpg);
+    background-size: cover;
+    background-position: center;
+  }
+
+h1{
+    text-align: center;
+    font-size: 40px;
+    text-decoration: underline;
+    margin-bottom: 50px;
+    margin-top: 45px;
+  }
+
+.container{
+    font-size: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.item1{
+    text-indent: 40px;
+    margin-bottom: 50px;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-left: 10px;
+    text-align: justify;
+}
+
+.item2{
+    text-indent: 40px;
+    margin-bottom: 50px;
+    background-color: rgb(255, 255, 255, 0.5);
+    margin-right: 10px;
+    text-align: justify;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px; 
+}
+
+/* Stilurile pentru fiecare imagine */
+figure {
+    width: 100%; /* Umple lățimea containerului */
+    margin:0;
+    padding: 0;
+    overflow:hidden;
+    position: relative;
+}
+
+figure img {
+    width: 100%; /* Umple lățimea tag-ului figure */
+    height: auto; /* Menține proporțiile imaginii */
+    -webkit-filter: grayscale(100%); /* Imagine alb-negru */
+    filter: grayscale(100%);
+    -webkit-transition: .3s ease-in-out; /* Tranziție la hover */
+    transition: .3s ease-in-out;   
+}
+
+figure:hover img {
+    -webkit-filter: grayscale(0); /* Imagine colorată la hover */
+    filter: grayscale(0);
+}
+
+/* Stilurile pentru descriere */
+figure span
+{   position: absolute;
+    bottom: -50px; /* Poziționare inițială sub imagine */
+    display: block;
+    z-index: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: #000000; /* Culoare text */
+    font-size: 20px;
+    text-decoration: none;
+    text-align: center;
+    -webkit-transition: .3s ease-in-out; /* Tranziție la hover */
+    transition: .3s ease-in-out;
+    opacity: 0; /* Inițial invizibil */
+}
+
+figure:hover span {
+    bottom: 0px; /* Mișcare în sus la hover */
+    opacity: 1; /* Devenire vizibil */
+}
+
+@media (max-width: 700px) {
+   
+    h1, h2 {
+        font-size: 5vw; 
+        margin-bottom: 4vw;
+        margin-top: 4vw;
+    }
+
+    .container {
+        font-size: 4vw; 
+        gap: 2vw;
+    }
+
+    .item p {
+        text-indent: 7vw; 
+        margin-bottom: 4vw;
+        margin-left: 1vw;
+        margin-right: 1vw;
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr; 
+        gap: 10px; 
+    }
+
+    figure {
+        margin-bottom: 20px; 
+    }
+
+    figure img {
+        height: auto;
+    }
+}

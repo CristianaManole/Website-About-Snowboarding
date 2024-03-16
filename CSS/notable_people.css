@@ -1,0 +1,118 @@
+body{
+    height: 100vh;
+    background-color:#c3b6fc;
+    min-height: 100vh; /* Modificat pentru a preveni overflow pe ecrane mici */
+    margin: 0; /* Elimină marginile implicite ale corpului */
+  }
+
+h1, h2{
+    text-align: center;
+    font-size: 30px;
+    text-decoration: underline;
+    margin-bottom: 70px;
+    margin-top: 45px;
+}
+
+.container{
+    font-size: 20px;
+    display: grid;
+    grid-template-columns:1fr 1fr 4fr;
+    grid-template-rows: 100px 100px;
+    gap: 5px;
+    box-sizing: border-box;
+    margin-bottom: 100px;
+}
+
+.item1{
+    padding: 30px;
+    text-align: center;
+    margin-left: 10px;
+    font-weight: bold;
+    background-color: rgba(255, 236, 179, 0.5);
+    margin-right: 10px;
+    justify-content: center;
+}
+
+.item2, .name, .age, .descr{
+    padding: 30px;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    justify-content: center;
+}
+
+.item2{
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.name{
+    background-color:  rgb(115, 164, 181,0.3);
+}
+
+.age{
+    background-color: rgb(255, 113, 97,0.3);
+}
+
+.descr{
+    background-color: rgb(255, 255, 255,0.3);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 20px; 
+}
+
+figure {
+    width: 100%; /* Umple lățimea containerului */
+    margin:0;
+    padding: 0;
+    overflow:hidden;
+    position: relative;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+figure img {
+    width: 100%;
+    height: 300px; /* Ajustează la înălțimea dorită */
+    object-fit: cover; /* Asigură că imaginea este acoperită fără a fi distorsionată */
+    -webkit-transition: .3s ease-in-out; /* Tranziție la hover */
+    transition: .3s ease-in-out; 
+    -webkit-filter: blur(3px);
+	filter: blur(3px);
+}
+
+figure:hover img {
+	-webkit-filter: blur(0);
+	filter: blur(0);
+}
+
+figure span
+{  
+    color: #000000; /* Culoare text */
+    font-size: 25px;
+    text-decoration: none;
+    text-align: center; 
+}
+
+
+@media (max-width: 700px) {
+
+    .container {
+        grid-template-columns: 1fr; /* pun asa pt a afisa elem pe o singura linie */
+        margin-bottom: 20px; 
+    }
+    .grid-container {
+        grid-template-columns: 1fr; 
+        gap: 10px; 
+    }
+
+    figure {
+        margin-bottom: 20px; 
+    }
+
+    figure img {
+        height: auto;
+    }
+}
